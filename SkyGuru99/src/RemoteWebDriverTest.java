@@ -1,3 +1,4 @@
+import guru99Bank.Guru99Bank;
 import guru99Bank.Guru99Login;
 
 import java.io.*;
@@ -5,6 +6,7 @@ import java.net.*;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.http.util.Asserts;
 import org.openqa.selenium.*;
 import org.openqa.selenium.html5.*;
 import org.openqa.selenium.logging.*;
@@ -22,7 +24,7 @@ public class RemoteWebDriverTest {
         DesiredCapabilities capabilities = new DesiredCapabilities(browserName, "", Platform.ANY);
         String host = "demo.perfectomobile.com";
         capabilities.setCapability("user", "avnerg@perfectomobile.com");
-        capabilities.setCapability("password", "rubhuck2@");
+        capabilities.setCapability("password", "a1001a");
 
         //TODO: Change your device ID
         capabilities.setCapability("deviceName", "3133BB296C46FA2250362A227BA462A56ED11A45");
@@ -38,8 +40,11 @@ public class RemoteWebDriverTest {
 
         try {
             // write your code here
+        	String reportKey = driver.getCapabilities().getCapability("reportKey").toString();
         	Guru99Login page = new Guru99Login(driver);
-        	page.init().login("mngr28168", "YnamenA");
+        	String mgrID = page.init().login("mngr28168", "YnamenA").getManagerID();
+        	
+        	//assertTrue(mgrID.contains("myID"));
         	
         	
 
